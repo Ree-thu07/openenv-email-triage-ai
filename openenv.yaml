@@ -1,0 +1,15 @@
+name: email-triage-env
+description: Real-world email classification and response environment
+version: 1.0
+
+observation_space:
+  inbox: list
+  history: list
+
+action_space:
+  email_id: string
+  action_type: string
+  response: string
+
+reward:
+  type: float
