@@ -1,11 +1,9 @@
-import email
-
-
 prompt = f"""
 You are an AI customer support agent.
 
 Previous actions:
-{abs.history}
+{', '.join(obs.history) if obs.history else 'None'}
+
 Current Email:
 Subject: {email.subject}
 Body: {email.body}
