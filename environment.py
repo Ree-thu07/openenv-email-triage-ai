@@ -31,7 +31,12 @@ class EmailEnv:
         if self.index >= len(self.emails):
             return self.state(), 0.0, True, {"feedback": "No more emails"}
 
-        email = self.emails[self.index]
+        email = next((e for e in self.emails if e["id"] == action.email_id), None)
+
+        if email.get("priority") == "high" and action.action_type == "ignore":
+            reward -= 0.4
+        if not email:
+            return self.state(), 0.0, False, {"feedback": "Invalid email_id"}
 
         reward, feedback = grade(email, action)
 
