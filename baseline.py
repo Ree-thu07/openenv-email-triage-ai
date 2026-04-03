@@ -1,5 +1,5 @@
 import os
-from openai import OpenAI # type: ignore
+from openai import OpenAI 
 from environment import EmailEnv
 from models import Action
 from tasks import hard_emails
