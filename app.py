@@ -1,4 +1,4 @@
-from fastapi import FastAPI  # type: ignore
+from fastapi import FastAPI  
 from environment import EmailEnv
 from tasks import hard_emails
 from models import Action
