@@ -26,7 +26,7 @@ medium_emails = [
         "id": "4",
         "subject": "Account hacked",
         "body": "Someone accessed my account!",
-        "expected_action": "escalate"
+        "expected_action": "escalate",
         "priority": "high",
         "sentiment": "angry"
     }
@@ -35,15 +35,20 @@ medium_emails = [
 # HARD TASK
 hard_emails = [
     {
-        "id": "5",
-        "subject": "Legal complaint",
-        "body": "I will file a complaint if not resolved",
-        "expected_action": "escalate"
+        "id": "H1",
+        "subject": "Legal escalation: data breach",
+        "body": "We may take legal action if not resolved immediately.",
+        "priority": "high",
+        "sentiment": "angry",
+        "requires_apology": True,
+        "requires_escalation": True
     },
     {
-        "id": "6",
-        "subject": "Product feedback",
-        "body": "Loved your product but needs improvements",
-        "expected_action": "reply"
+        "id": "H2",
+        "subject": "Service outage affecting business",
+        "body": "Our operations are down. Need urgent fix.",
+        "priority": "high",
+        "sentiment": "frustrated",
+        "requires_escalation": True
     }
 ]
