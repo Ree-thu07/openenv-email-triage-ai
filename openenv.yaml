@@ -1,15 +1,15 @@
 name: email-triage-env
-description: Real-world email classification and response environment
+description: Real-world email triage environment for customer support AI agents
 version: 1.0
 
-observation_space:
-  inbox: list
-  history: list
+entrypoint: app.py
 
-action_space:
-  email_id: string
-  action_type: string
-  response: string
+tasks:
+  - name: easy
+    description: Basic classification of spam vs normal emails
 
-reward:
-  type: float
+  - name: medium
+    description: Complaint handling with tone awareness
+
+  - name: hard
+    description: Urgent escalation, legal risk handling, and apology reasoning
