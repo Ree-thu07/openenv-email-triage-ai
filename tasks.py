@@ -41,7 +41,8 @@ hard_emails = [
         "priority": "high",
         "sentiment": "angry",
         "requires_apology": True,
-        "requires_escalation": True
+        "requires_escalation": True,
+        "expected_action": "escalate"
     },
     {
         "id": "H2",
@@ -49,6 +50,7 @@ hard_emails = [
         "body": "Our operations are down. Need urgent fix.",
         "priority": "high",
         "sentiment": "frustrated",
-        "requires_escalation": True
+        "requires_escalation": True,
+        "expected_action": "escalate"
     }
 ]
