@@ -13,27 +13,33 @@ while True:
     if not obs.inbox:
         break
 
-    # ⭐ SELECT BEST EMAIL (IMPORTANT)
+    # ⭐ SELECT BEST EMAIL (priority + urgency + sentiment)
     email = max(
         obs.inbox,
         key=lambda e: (
             e.priority == "high",
-            e.sentiment == "angry"
+            "urgent" in e.subject.lower(),
+            e.sentiment in ["angry", "frustrated"]
         )
     )
 
-    # ⭐ SMART DECISION LOGIC
+    subject = email.subject.lower()
+
+    # ⭐ IMPROVED DECISION LOGIC (KEY FIX)
     if email.priority == "high":
-        action_type = "escalate"
-    elif "spam" in email.subject.lower():
+        if email.sentiment in ["angry", "frustrated"] or "urgent" in subject:
+            action_type = "escalate"
+        else:
+            action_type = "reply"
+    elif "spam" in subject:
         action_type = "ignore"
     else:
         action_type = "reply"
 
-    # ⭐ SMART RESPONSE
+    # ⭐ BETTER RESPONSE (BOOSTS SCORE)
     if action_type == "reply":
-        if email.sentiment in ["angry", "frustrated"]:
-            response = "Sorry for the inconvenience. We understand your concern and will resolve it quickly."
+        if email.sentiment in ["angry", "frustrated"] or "complaint" in subject:
+            response = "Sorry for the inconvenience. Thank you for your patience. We will resolve your issue promptly."
         else:
             response = "Thank you for reaching out. We will assist you shortly."
     else:
@@ -47,7 +53,7 @@ while True:
 
     obs, reward, done, info = env.step(action)
 
-    print(f"[STEP] action={action_type} reward={reward}")
+    print(f"[STEP] action={action_type} reward={round(reward, 2)}")
 
     total_score += reward
 
